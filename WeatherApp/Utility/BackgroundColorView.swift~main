@@ -1,0 +1,34 @@
+//
+//  BackgroundColorView.swift
+//  WeatherApp
+//
+//  Created by Brinit on 26/08/25.
+//
+
+import SwiftUI
+
+struct BackgroundColorView: View {
+    
+    
+//MARK: - VARIABLES
+    @State var isLoading: Bool = true
+    var topColor: Color
+    var bottomColor: Color
+    
+    var body: some View { // Error Failed to produce diagnostic for expression; please submit a bug repor
+//MARK: - Background Configration
+        LinearGradient(colors: [topColor,bottomColor],
+                       startPoint: isLoading ? .topLeading : .bottomLeading,
+                       endPoint: isLoading ? .bottomTrailing : .topTrailing)
+                    .edgesIgnoringSafeArea(.all)
+                    .onAppear(perform: startAnimation)
+
+        
+    }
+    
+    func startAnimation() {
+        withAnimation(Animation.linear(duration: 5).repeatForever(autoreverses: false)) {
+            self.isLoading.toggle()
+        }
+    }
+}

@@ -6,15 +6,19 @@
 //
 
 import SwiftUI
+import CoreLocation
 
 struct WeatherView: View {
+    
+    @State private var isNight: Bool = true
     
     var body: some View{
         
         ZStack{
-            BackgroundColorView(topColor: .blue, bottomColor: Color("lightBlue"))
+            BackgroundColorView(topColor: isNight ? .black:.blue, bottomColor: isNight ? .gray : Color("lightBlue"))
             VStack{
-                CityWeatherView(cityName: "Surat, GJ", dayImageName: "cloud.drizzle.fill", temprature: 30)
+                        
+                        CityWeatherView(cityName: "Surat, GJ", dayImageName: "cloud.drizzle.fill", temprature: 30)
                 VStack{
                     HStack(spacing: 20){
                             WeatherDayView(dayCount: 1, imageName: "cloud.sun.fill", temprature: 30)
@@ -28,11 +32,13 @@ struct WeatherView: View {
                 VStack{
                     
                     Button{
-                        print("Tapped")
+                        isNight = !isNight
                     } label: {
-                        ButtonConfiguration(name: "Enter City Name", fontColor: .blue, backgroundColor: .white, width: 280, height: 50)
+                        ButtonConfiguration(name: "Enter City Name", fontColor: .white.opacity(0.75), width: 280, height: 50)
+                        Image(systemName: "chevron.forward.dotted.chevron.forward")
+                            .foregroundStyle(.white)
                     
-                    }
+                    }.buttonStyle(.bordered)
                 }
 
                 Spacer()

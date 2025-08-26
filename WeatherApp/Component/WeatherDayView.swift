@@ -9,11 +9,14 @@ import SwiftUI
 
 struct WeatherDayView: View {
     
+//MARK: - VARIABLES
+    
     let dayName: [Int:String] = [1:"SUN",2:"MON",3:"TUE",4:"WED",5:"THU",6:"FRI",7:"SAT"]
     let dayCount: Int
     let imageName: String
     let temprature: Int
     
+//MARK: - Day Configration
     var body: some View {
         VStack(spacing: 9) {
             Text(dayName[dayCount] ?? "Not Available")
